@@ -1,23 +1,15 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View } from "react-native"
+import { View } from "react-native"
+import { Text } from "react-native-paper"
 
 const DashboardScreen = () => {
     return (
-        <View style={styles.container}>
+        <View>
             <Text>Dashboard Page</Text>
             <StatusBar style="auto" />
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 
 export default DashboardScreen

@@ -1,11 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import AppBottomTab from './src/navigation/AppBottomTab';
-import { PaperProvider } from 'react-native-paper';
+import { PaperProvider, adaptNavigationTheme, MD3DarkTheme } from 'react-native-paper';
+
+const { DarkTheme } = adaptNavigationTheme({ reactNavigationDark: DefaultTheme })
 
 export default function App() {
   return (
-    <PaperProvider>
-      <NavigationContainer>
+    <PaperProvider theme={MD3DarkTheme}>
+      <NavigationContainer theme={DarkTheme}>
         <AppBottomTab />
       </NavigationContainer>
     </PaperProvider>
