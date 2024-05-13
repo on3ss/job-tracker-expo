@@ -40,17 +40,6 @@ const AppBottomTab = () => {
 
                         return null;
                     }}
-                    getLabelText={({ route }) => {
-                        const { options } = descriptors[route.key];
-                        const label =
-                            options.tabBarLabel !== undefined
-                                ? options.tabBarLabel
-                                : options.title !== undefined
-                                    ? options.title
-                                    : route.name;
-
-                        return label;
-                    }}
                 />
             )}>
             <Tab.Screen name="Dashboard" component={DashboardScreen} options={{
