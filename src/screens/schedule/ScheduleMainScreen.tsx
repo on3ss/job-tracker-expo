@@ -2,13 +2,13 @@ import { StatusBar } from "expo-status-bar"
 import { View } from "react-native"
 import { Text } from "react-native-paper"
 
-const MoreScreen = () => {
+const ScheduleMainScreen = () => {
     return (
         <View>
-            <Text>More Page</Text>
+            <Text>Schedule Page</Text>
             <StatusBar style="auto" />
         </View>
     )
 }
 
-export default MoreScreen
+export default ScheduleMainScreen

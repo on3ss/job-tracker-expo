@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar"
 import { View } from "react-native"
 import { Text } from "react-native-paper"
 
-const DashboardScreen = () => {
+const DashboardHomeScreen = () => {
     return (
         <View>
             <Text>Dashboard Page</Text>
@@ -11,4 +11,4 @@ const DashboardScreen = () => {
     )
 }
 
-export default DashboardScreen
+export default DashboardHomeScreen
