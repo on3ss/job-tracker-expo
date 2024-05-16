@@ -1,4 +1,4 @@
-import { Appbar, Button, Menu } from 'react-native-paper';
+import { Appbar, Button, Menu, useTheme } from 'react-native-paper';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ParamListBase, Route } from '@react-navigation/native';
@@ -15,15 +15,14 @@ interface CustomNavigationBarPropType {
 
 const CustomNavigationBar: React.FC<CustomNavigationBarPropType> = ({ navigation, route, options, back }) => {
   const title = getHeaderTitle(options, route.name);
+  const theme = useTheme()
   const { toggleTheme, isThemeDark } = useContext(PreferencesContext)
 
   return (
-    <Appbar.Header>
+    <Appbar.Header elevated={true}>
       {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-      <Appbar.Content title={title} />
-      <Button onPress={toggleTheme}>
-        <Feather name={isThemeDark ? 'sun' : 'moon'} size={18} />
-      </Button>
+      <Appbar.Content title={title} titleStyle={{ fontWeight: 'bold' }} />
+      <Appbar.Action icon={() => <Feather name={isThemeDark ? 'sun' : 'moon'} size={22} color={theme?.colors.onSurface} />} onPress={toggleTheme} />
     </Appbar.Header>
   );
 }
