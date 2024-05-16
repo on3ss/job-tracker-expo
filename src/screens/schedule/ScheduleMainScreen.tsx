@@ -6,7 +6,6 @@ const ScheduleMainScreen = () => {
     return (
         <View>
             <Text>Schedule Page</Text>
-            <StatusBar style="auto" />
         </View>
     )
 }

@@ -6,7 +6,6 @@ const MoreMainScreen = () => {
     return (
         <View>
             <Text>More Page</Text>
-            <StatusBar style="auto" />
         </View>
     )
 }

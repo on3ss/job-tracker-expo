@@ -6,7 +6,6 @@ const ApplicationsHomeScreen = () => {
     return (
         <View>
             <Text>Applications Page</Text>
-            <StatusBar style="auto" />
         </View>
     )
 }
