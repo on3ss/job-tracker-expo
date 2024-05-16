@@ -26,6 +26,7 @@ const CustomNavigationBar: React.FC<CustomNavigationBarPropType> = ({ navigation
         <Menu
           visible={visible}
           onDismiss={closeMenu}
+          anchorPosition="bottom"
           anchor={
             <Appbar.Action
               icon="dots-vertical"
