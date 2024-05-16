@@ -4,6 +4,7 @@ import { PaperProvider, adaptNavigationTheme, MD3DarkTheme, MD3LightTheme } from
 import merge from 'deepmerge'
 import { useCallback, useMemo, useState } from 'react';
 import { PreferencesContext } from './src/providers/PreferencesContext';
+import { StatusBar } from "expo-status-bar"
 
 const { LightTheme, DarkTheme } = adaptNavigationTheme({ reactNavigationDark: NavigationDefaultTheme, reactNavigationLight: NavigationDarkTheme })
 
@@ -30,6 +31,7 @@ export default function App() {
     <PreferencesContext.Provider value={preferences}>
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
+          <StatusBar style={isThemeDark ? 'light' : 'dark'} />
           <AppBottomTab />
         </NavigationContainer>
       </PaperProvider>
