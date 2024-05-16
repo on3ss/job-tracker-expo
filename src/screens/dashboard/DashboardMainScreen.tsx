@@ -1,14 +1,19 @@
 import { StatusBar } from "expo-status-bar"
-import { View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
 const DashboardHomeScreen = () => {
     return (
         <View>
-            <Text>Dashboard Page</Text>
-            <StatusBar style="auto" />
+            <View>
+                <Text variant="titleLarge">Upcoming</Text>
+            </View>
         </View>
     )
 }
+
+const stylesheet = StyleSheet.create({
+
+})
 
 export default DashboardHomeScreen

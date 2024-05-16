@@ -1,15 +1,38 @@
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme } from '@react-navigation/native';
 import AppBottomTab from './src/navigation/AppBottomTab';
-import { PaperProvider, adaptNavigationTheme, MD3DarkTheme } from 'react-native-paper';
+import { PaperProvider, adaptNavigationTheme, MD3DarkTheme, MD3LightTheme } from 'react-native-paper';
+import merge from 'deepmerge'
+import { useCallback, useMemo, useState } from 'react';
+import { PreferencesContext } from './src/providers/PreferencesContext';
 
-const { DarkTheme } = adaptNavigationTheme({ reactNavigationDark: DefaultTheme })
+const { LightTheme, DarkTheme } = adaptNavigationTheme({ reactNavigationDark: NavigationDefaultTheme, reactNavigationLight: NavigationDarkTheme })
+
+const CombinedDefaultTheme = merge(MD3LightTheme, LightTheme)
+const CombinedDarkTheme = merge(MD3DarkTheme, DarkTheme)
 
 export default function App() {
+  const [isThemeDark, setIsThemeDark] = useState(false)
+  let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme
+
+  const toggleTheme = useCallback(() => {
+    return setIsThemeDark(!isThemeDark)
+  }, [isThemeDark])
+
+  const preferences = useMemo(
+    () => ({
+      toggleTheme,
+      isThemeDark
+    }),
+    [toggleTheme, isThemeDark]
+  )
+
   return (
-    <PaperProvider theme={MD3DarkTheme}>
-      <NavigationContainer theme={DarkTheme}>
-        <AppBottomTab />
-      </NavigationContainer>
-    </PaperProvider>
+    <PreferencesContext.Provider value={preferences}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={theme}>
+          <AppBottomTab />
+        </NavigationContainer>
+      </PaperProvider>
+    </PreferencesContext.Provider>
   );
 }
