@@ -5,7 +5,14 @@ import ScheduleStack from "./stacks/ScheduleStack";
 import ApplicationsStack from "./stacks/ApplicationsStack";
 import MoreStack from "./stacks/MoreStack";
 
-const Tab = createMaterialBottomTabNavigator();
+type RootBottomTabParamList = {
+    DashboardStack: undefined,
+    ScheduleStack: undefined,
+    ApplicationsStack: undefined,
+    MoreStack: undefined,
+}
+
+const Tab = createMaterialBottomTabNavigator<RootBottomTabParamList>();
 
 const AppBottomTab = () => {
     return (

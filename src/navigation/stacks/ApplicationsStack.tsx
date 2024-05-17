@@ -1,8 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CustomNavigationBar from "../../components/CustomNavigationBar";
 import ApplicationsHomeScreen from "../../screens/applications/ApplicationsMainScreen";
+import ApplicationFormScreen from "../../screens/applications/ApplicationFormScreen";
 
-const Stack = createNativeStackNavigator()
+export type ApplicationsStackParamList = {
+    Applications: undefined,
+    ApplicationForm: undefined,
+}
+
+const Stack = createNativeStackNavigator<ApplicationsStackParamList>()
 
 const ApplicationsStack = () => {
     return (
@@ -11,7 +17,8 @@ const ApplicationsStack = () => {
             screenOptions={{
                 header: (props) => <CustomNavigationBar {...props} />
             }}>
-            <Stack.Screen name="Applications" component={ApplicationsHomeScreen}></Stack.Screen>
+            <Stack.Screen name="Applications" component={ApplicationsHomeScreen} />
+            <Stack.Screen name="ApplicationForm" component={ApplicationFormScreen} />
         </Stack.Navigator>
     )
 }
