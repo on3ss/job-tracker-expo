@@ -1,40 +1,32 @@
-import { NavigationContainer, DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme } from '@react-navigation/native';
+// App.tsx
+import React, { useContext } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { PaperProvider } from 'react-native-paper';
+import { StatusBar } from 'expo-status-bar';
 import AppBottomTab from './src/navigation/AppBottomTab';
-import { PaperProvider, adaptNavigationTheme, MD3DarkTheme, MD3LightTheme } from 'react-native-paper';
-import merge from 'deepmerge'
-import { useCallback, useMemo, useState } from 'react';
-import { PreferencesContext } from './src/providers/PreferencesContext';
-import { StatusBar } from "expo-status-bar"
+import { PreferencesProvider, PreferencesContext } from './src/providers/PreferencesContext';
+import { CombinedDarkTheme, CombinedDefaultTheme } from './src/theme';
 
-const { LightTheme, DarkTheme } = adaptNavigationTheme({ reactNavigationDark: NavigationDefaultTheme, reactNavigationLight: NavigationDarkTheme })
+const App: React.FC = () => {
+  return (
+    <PreferencesProvider>
+      <ThemedApp />
+    </PreferencesProvider>
+  );
+};
 
-const CombinedDefaultTheme = merge(MD3LightTheme, LightTheme)
-const CombinedDarkTheme = merge(MD3DarkTheme, DarkTheme)
-
-export default function App() {
-  const [isThemeDark, setIsThemeDark] = useState(false)
-  let theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme
-
-  const toggleTheme = useCallback(() => {
-    return setIsThemeDark(!isThemeDark)
-  }, [isThemeDark])
-
-  const preferences = useMemo(
-    () => ({
-      toggleTheme,
-      isThemeDark
-    }),
-    [toggleTheme, isThemeDark]
-  )
+const ThemedApp: React.FC = () => {
+  const { isThemeDark } = useContext(PreferencesContext);
+  const theme = isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme;
 
   return (
-    <PreferencesContext.Provider value={preferences}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer theme={theme}>
-          <StatusBar style={isThemeDark ? 'light' : 'dark'} />
-          <AppBottomTab />
-        </NavigationContainer>
-      </PaperProvider>
-    </PreferencesContext.Provider>
+    <PaperProvider theme={theme}>
+      <NavigationContainer theme={theme}>
+        <StatusBar style={isThemeDark ? 'light' : 'dark'} />
+        <AppBottomTab />
+      </NavigationContainer>
+    </PaperProvider>
   );
-}
+};
+
+export default App;
