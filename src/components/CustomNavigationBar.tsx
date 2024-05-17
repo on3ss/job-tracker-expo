@@ -21,7 +21,7 @@ const CustomNavigationBar: React.FC<CustomNavigationBarPropType> = ({ navigation
   return (
     <Appbar.Header elevated={true}>
       {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-      <Appbar.Content title={title} titleStyle={{ fontWeight: 'bold' }} />
+      <Appbar.Content title={title} titleStyle={{ fontFamily: 'poppins-semi-bold' }} />
       <Appbar.Action icon={() => <Feather name={isThemeDark ? 'sun' : 'moon'} size={22} color={theme?.colors.onSurface} />} onPress={toggleTheme} />
     </Appbar.Header>
   );
