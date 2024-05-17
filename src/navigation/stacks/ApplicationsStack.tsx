@@ -18,7 +18,9 @@ const ApplicationsStack = () => {
                 header: (props) => <CustomNavigationBar {...props} />
             }}>
             <Stack.Screen name="Applications" component={ApplicationsHomeScreen} />
-            <Stack.Screen name="ApplicationForm" component={ApplicationFormScreen} />
+            <Stack.Screen name="ApplicationForm" component={ApplicationFormScreen} options={{
+                title: "New Application"
+            }} />
         </Stack.Navigator>
     )
 }
