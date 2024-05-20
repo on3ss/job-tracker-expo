@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Button, Text } from 'react-native-paper';
-import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import { TextInput, Button } from 'react-native-paper';
+import { DatePickerInput } from 'react-native-paper-dates';
 
 const ApplicationFormScreen: React.FC = () => {
     const [title, setTitle] = useState<string>('');
     const [organization, setOrganization] = useState<string>('');
-    const [date, setDate] = useState<Date>(new Date());
-    const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
-
-    const onChangeDate = (event: DateTimePickerEvent, selectedDate?: Date | undefined): void => {
-        const currentDate = selectedDate || date;
-        setShowDatePicker(false);
-        setDate(currentDate);
-    };
+    const [inputDate, setInputDate] = React.useState<Date | undefined>(new Date())
 
     const handleSubmit = () => {
         console.log({
             title,
             organization,
-            date,
+            inputDate,
         });
     };
 
@@ -41,21 +34,21 @@ const ApplicationFormScreen: React.FC = () => {
                 style={styles.input}
             />
 
-            <View style={styles.dateContainer}>
-                <Button onPress={() => setShowDatePicker(true)} style={styles.dateButton}>
-                    Select Application Date
-                </Button>
-                <Text style={styles.dateText}>{date.toDateString()}</Text>
-            </View>
-
-            {showDatePicker && (
-                <DateTimePicker
-                    value={date}
-                    mode="date"
-                    display="default"
-                    onChange={onChangeDate}
+            <View style={{ marginVertical: 30 }}>
+                <DatePickerInput
+                    locale="en"
+                    label="Application Date"
+                    value={inputDate}
+                    onChange={(d) => setInputDate(d)}
+                    inputMode="start"
+                    withDateFormatInLabel={false}
+                    validRange={{
+                        startDate: new Date(1971),
+                        endDate: new Date()
+                    }}
+                    presentationStyle='overFullScreen'
                 />
-            )}
+            </View>
 
             <Button mode="contained" onPress={handleSubmit} style={styles.button}>
                 Create

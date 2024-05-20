@@ -9,7 +9,9 @@ import { CombinedDarkTheme, CombinedDefaultTheme } from './src/theme';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { View } from 'react-native';
+import { en, registerTranslation } from 'react-native-paper-dates'
 
+registerTranslation('en', en);
 SplashScreen.preventAutoHideAsync();
 
 const App: React.FC = () => {
