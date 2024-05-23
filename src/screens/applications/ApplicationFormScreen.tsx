@@ -18,12 +18,20 @@ type FormData = {
 }
 
 const formSchema = yup.object({
-    title: yup.string().required('Title is required').min(4, 'Title must be at least 4 characters').max(255, 'Title must be less than 255 characters'),
-    organization: yup.string().required('Organization is required').min(4, 'Organization must be at least 4 characters').max(255, 'Organization must be less than 255 characters'),
-    applicationDate: yup.date().required('Application date is required')
+    title: yup.string()
+        .required('Title is required')
+        .min(4, 'Title must be at least 4 characters')
+        .max(255, 'Title must be less than 255 characters'),
+    organization: yup.string()
+        .required('Organization is required')
+        .min(4, 'Organization must be at least 4 characters')
+        .max(255, 'Organization must be less than 255 characters'),
+    applicationDate: yup.date()
+        .required('Application date is required')
+        .max(new Date(), 'Application date cannot be in the future')
 }).required();
 
-const ApplicationFormScreen = ({ navigation }: Props) => {
+const ApplicationFormScreen: React.FC<Props> = ({ navigation }) => {
     const theme = useTheme();
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
         defaultValues: {
