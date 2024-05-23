@@ -1,10 +1,15 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Button, Text, useTheme } from 'react-native-paper';
+import { Button, Text, useTheme } from 'react-native-paper';
 import { DatePickerInput } from 'react-native-paper-dates';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import FormInput from '../../components/FormInput';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ApplicationsStackParamList } from '../../navigation/stacks/ApplicationsStack';
+
+type Props = NativeStackScreenProps<ApplicationsStackParamList, 'ApplicationForm'>
 
 type FormData = {
     title: string,
@@ -18,7 +23,7 @@ const formSchema = yup.object({
     applicationDate: yup.date().required('Application date is required')
 }).required();
 
-const ApplicationFormScreen: React.FC = () => {
+const ApplicationFormScreen = ({ navigation }: Props) => {
     const theme = useTheme();
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
         defaultValues: {
@@ -29,45 +34,27 @@ const ApplicationFormScreen: React.FC = () => {
         resolver: yupResolver(formSchema)
     });
 
-    const onSubmit = (data: FormData) => console.log(data);
+    const onSubmit = (data: FormData) => {
+        console.log(data)
+        navigation.replace("ApplicationDetail")
+    };
 
     return (
         <View style={styles.container}>
-            <View style={styles.input}>
-                <Controller
-                    control={control}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
-                            label="Title"
-                            placeholder="Enter the title"
-                            value={value}
-                            onBlur={onBlur}
-                            onChangeText={onChange}
-                            error={errors.title ? true : false}
-                        />
-                    )}
-                    name="title"
-                />
-                {errors.title && <Text style={[styles.errorText, { color: theme.colors.error }]}>{errors.title.message}</Text>}
-            </View>
-
-            <View style={styles.input}>
-                <Controller
-                    control={control}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
-                            label="Organization"
-                            placeholder="Enter the organization name"
-                            value={value}
-                            onBlur={onBlur}
-                            onChangeText={onChange}
-                            error={errors.organization ? true : false}
-                        />
-                    )}
-                    name="organization"
-                />
-                {errors.organization && <Text style={[styles.errorText, { color: theme.colors.error }]}>{errors.organization.message}</Text>}
-            </View>
+            <FormInput
+                name="title"
+                control={control}
+                label="Title"
+                placeholder="Enter the title"
+                errorMessage={errors.title?.message}
+            />
+            <FormInput
+                name="organization"
+                control={control}
+                label="Organization"
+                placeholder="Enter the organization name"
+                errorMessage={errors.organization?.message}
+            />
 
             <View style={styles.dateContainer}>
                 <Controller
@@ -104,9 +91,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: 'flex-start',
-    },
-    input: {
-        marginBottom: 15,
     },
     dateContainer: {
         marginVertical: 30,
