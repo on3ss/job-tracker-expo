@@ -17,6 +17,8 @@ type FormData = {
     applicationDate: Date
 }
 
+const currentDate = new Date();
+
 const formSchema = yup.object({
     title: yup.string()
         .required('Title is required')
@@ -28,7 +30,7 @@ const formSchema = yup.object({
         .max(255, 'Organization must be less than 255 characters'),
     applicationDate: yup.date()
         .required('Application date is required')
-        .max(new Date(), 'Application date cannot be in the future')
+        .max(currentDate, 'Application date cannot be in the future')
 }).required();
 
 const ApplicationFormScreen: React.FC<Props> = ({ navigation }) => {
@@ -37,14 +39,14 @@ const ApplicationFormScreen: React.FC<Props> = ({ navigation }) => {
         defaultValues: {
             title: '',
             organization: '',
-            applicationDate: new Date()
+            applicationDate: currentDate
         },
         resolver: yupResolver(formSchema)
     });
 
     const onSubmit = (data: FormData) => {
-        console.log(data)
-        navigation.replace("ApplicationDetail")
+        console.log(data);
+        navigation.replace("ApplicationDetail");
     };
 
     return (
@@ -84,7 +86,7 @@ const ApplicationFormScreen: React.FC<Props> = ({ navigation }) => {
                     )}
                     name="applicationDate"
                 />
-                {errors.applicationDate && <Text style={[styles.errorText, { color: theme.colors.error }]}>{errors.applicationDate.message}</Text>}
+                {errors.applicationDate && <Text style={{ color: theme.colors.error, marginTop: 32 }}>{errors.applicationDate.message}</Text>}
             </View>
 
             <Button mode="contained" onPress={handleSubmit(onSubmit)} style={styles.button}>
