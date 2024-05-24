@@ -1,6 +1,6 @@
 import { Octicons } from '@expo/vector-icons';
 import React from 'react';
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 
 const MOCK_STEPS = [
