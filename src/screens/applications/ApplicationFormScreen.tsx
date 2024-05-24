@@ -99,7 +99,7 @@ const ApplicationFormScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
+        padding: 8,
         justifyContent: 'flex-start',
     },
     dateContainer: {
