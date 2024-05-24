@@ -1,6 +1,6 @@
 import React from 'react';
 import { Controller, Control } from 'react-hook-form';
-import { TextInput, Text, useTheme } from 'react-native-paper';
+import { TextInput, Text, useTheme, HelperText } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 
 type FormInputProps = {
@@ -12,8 +12,6 @@ type FormInputProps = {
 };
 
 const FormInput: React.FC<FormInputProps> = ({ name, control, label, placeholder, errorMessage }) => {
-    const theme = useTheme();
-
     return (
         <View style={styles.input}>
             <Controller
@@ -30,7 +28,7 @@ const FormInput: React.FC<FormInputProps> = ({ name, control, label, placeholder
                 )}
                 name={name}
             />
-            {errorMessage && <Text style={[styles.errorText, { color: theme.colors.error }]}>{errorMessage}</Text>}
+            <HelperText type="error" visible={errorMessage != null}>{errorMessage}</HelperText>
         </View>
     );
 };

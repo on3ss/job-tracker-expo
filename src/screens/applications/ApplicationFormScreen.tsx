@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { View, StyleSheet } from 'react-native';
-import { Button, Text, useTheme } from 'react-native-paper';
+import { Button, HelperText, Text, useTheme } from 'react-native-paper';
 import { DatePickerInput } from 'react-native-paper-dates';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -86,7 +86,7 @@ const ApplicationFormScreen: React.FC<Props> = ({ navigation }) => {
                     )}
                     name="applicationDate"
                 />
-                {errors.applicationDate && <Text style={{ color: theme.colors.error, marginTop: 32 }}>{errors.applicationDate.message}</Text>}
+                <HelperText type="error" style={styles.applicationDateError} visible={errors.applicationDate?.message != null}>{errors.applicationDate?.message}</HelperText>
             </View>
 
             <Button mode="contained" onPress={handleSubmit(onSubmit)} style={styles.button}>
@@ -111,6 +111,9 @@ const styles = StyleSheet.create({
     errorText: {
         marginTop: 6,
     },
+    applicationDateError: {
+        marginTop: 32
+    }
 });
 
 export default ApplicationFormScreen;
