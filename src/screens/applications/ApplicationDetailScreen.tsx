@@ -86,7 +86,7 @@ const ApplicationDetailScreen: React.FC = () => {
                 <View style={[styles.titleCard, { backgroundColor: theme.colors.primary }]}>
                     <Text variant="titleLarge" style={{ fontWeight: "bold", color: theme.colors.onPrimary }}>Lower Division Assistant</Text>
                     <View style={styles.organisationWrapper}>
-                        <Octicons name="organization" size={16} color="black" />
+                        <Octicons name="organization" size={16} color={theme.colors.onPrimary} />
                         <Text variant="bodyMedium" style={{ color: theme.colors.onPrimary }}>Department of Accounts & Treasuries</Text>
                     </View>
                 </View>
@@ -107,7 +107,6 @@ const StepListItem: React.FC<{ item: typeof MOCK_STEPS[0] }> = ({ item }) => {
     return (
         <View style={[styles.stepContainer, { shadowColor: theme.colors.shadow }]}>
             <Text variant="titleMedium" style={{ fontWeight: "bold" }}>{item.name}</Text>
-            <Text variant="bodyMedium">{item.description}</Text>
             <Text variant="bodyMedium">{item.date}</Text>
             <Text variant="bodyMedium">{item.venue}</Text>
             <View>
@@ -140,8 +139,7 @@ const styles = StyleSheet.create({
     stepContainer: {
         padding: 16,
         marginVertical: 8,
-        borderRadius: 8,
-        elevation: 1,
+        borderRadius: 8
     },
 });
 
