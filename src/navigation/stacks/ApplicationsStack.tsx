@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CustomNavigationBar from "../../components/CustomNavigationBar";
 import ApplicationsHomeScreen from "../../screens/applications/ApplicationsMainScreen";
 import ApplicationFormScreen from "../../screens/applications/ApplicationFormScreen";
-import ApplicationDetailScreen from "../../screens/applications/ApplicationDetailScreen";
+import ApplicationDetailScreen from "../../screens/applications/detail/ApplicationDetailScreen";
 
 export type ApplicationsStackParamList = {
     Applications: undefined,
