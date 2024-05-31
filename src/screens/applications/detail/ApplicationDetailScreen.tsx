@@ -23,11 +23,11 @@ const ApplicationDetailScreen: React.FC = () => {
                         <Text variant="bodyMedium" style={styles.organisationText}>MPSC</Text>
                     </View>
                 </Surface>
-                <View style={styles.stepsContainer}>
+                <View style={styles.nextStepContainer}>
                     <Text variant="titleMedium">Next Step</Text>
                     <StepListItem item={MOCK_NEXT_STEP} />
                 </View>
-                <View style={styles.stepsContainer}>
+                <View style={styles.upcomingStepsContainer}>
                     <Text variant="titleMedium">Upcoming Steps</Text>
                     {MOCK_STEPS.map((item) => <StepListItem item={item} key={item.id} />)}
                 </View>
@@ -37,7 +37,6 @@ const ApplicationDetailScreen: React.FC = () => {
 };
 
 const StepListItem: React.FC<{ item: typeof MOCK_STEPS[0] }> = ({ item }) => {
-    const theme = useTheme();
     const styles = useStyles();
     const timestamp = useMemo(() => dayjs(item.datetime), [item.datetime]);
 

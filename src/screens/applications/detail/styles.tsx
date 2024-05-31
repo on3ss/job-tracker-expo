@@ -26,8 +26,12 @@ const useStyles = () => {
         organisationText: {
             color: theme.colors.onSurface,
         },
-        stepsContainer: {
+        nextStepContainer: {
             marginTop: 16,
+        },
+        upcomingStepsContainer: {
+            marginTop: 16,
+            marginBottom: 64
         },
         stepContainer: {
             marginVertical: 8,
@@ -66,6 +70,9 @@ const useStyles = () => {
         },
         stepTime: {
             color: theme.colors.onSurface,
+        },
+        fab: {
+            position: 'absolute'
         },
     });
 };
