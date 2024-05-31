@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CustomNavigationBar from "../../components/CustomNavigationBar";
+import CustomAppBar from "../../components/CustomAppBarBar";
 import ScheduleMainScreen from "../../screens/schedule/ScheduleMainScreen";
 
 const Stack = createNativeStackNavigator()
@@ -9,7 +9,7 @@ const ScheduleStack = () => {
         <Stack.Navigator
             initialRouteName="Schedule"
             screenOptions={{
-                header: (props) => <CustomNavigationBar {...props} />
+                header: (props) => <CustomAppBar {...props} />
             }}>
             <Stack.Screen name="Schedule" component={ScheduleMainScreen}></Stack.Screen>
         </Stack.Navigator>

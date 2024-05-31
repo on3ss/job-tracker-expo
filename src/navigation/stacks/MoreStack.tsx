@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CustomNavigationBar from "../../components/CustomNavigationBar";
+import CustomAppBar from "../../components/CustomAppBarBar";
 import MoreMainScreen from "../../screens/more/MoreMainScreen";
 
 const Stack = createNativeStackNavigator()
@@ -9,7 +9,7 @@ const MoreStack = () => {
         <Stack.Navigator
             initialRouteName="More"
             screenOptions={{
-                header: (props) => <CustomNavigationBar {...props} />
+                header: (props) => <CustomAppBar {...props} />
             }}>
             <Stack.Screen name="More" component={MoreMainScreen}></Stack.Screen>
         </Stack.Navigator>

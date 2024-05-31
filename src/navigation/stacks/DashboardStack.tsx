@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DashboardHomeScreen from "../../screens/dashboard/DashboardMainScreen";
-import CustomNavigationBar from "../../components/CustomNavigationBar";
+import CustomAppBar from "../../components/CustomAppBarBar";
 
 const Stack = createNativeStackNavigator()
 
@@ -9,7 +9,7 @@ const DashboardStack = () => {
         <Stack.Navigator
             initialRouteName="Dashboard"
             screenOptions={{
-                header: (props) => <CustomNavigationBar {...props} />
+                header: (props) => <CustomAppBar {...props} />
             }}>
             <Stack.Screen name="Dashboard" component={DashboardHomeScreen}></Stack.Screen>
         </Stack.Navigator>

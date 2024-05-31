@@ -46,7 +46,9 @@ const ApplicationFormScreen: React.FC<Props> = ({ navigation }) => {
 
     const onSubmit = (data: FormData) => {
         console.log(data);
-        navigation.replace("ApplicationDetail");
+        navigation.replace("ApplicationDetail", {
+            applicationID: 1
+        });
     };
 
     return (
