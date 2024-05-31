@@ -15,7 +15,7 @@ const MOCK_STEPS = [
         id: 2,
         name: 'Advanced Algorithms',
         description: 'A deep dive into advanced algorithmic techniques and data structures.',
-        datetime: '2024-06-08T10:00:00',
+        datetime: '2024-06-01T10:00:00',
         venue: 'Room 202, Computer Science Building',
         subjects: [
             { id: 3, name: 'Graph Algorithms' },
