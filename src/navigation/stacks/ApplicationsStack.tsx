@@ -31,6 +31,7 @@ const ApplicationsStack = () => {
                 component={ApplicationDetailScreen}
                 options={{
                     title: "Details",
+                    /** @ts-ignore */
                     header: (props) => <ApplicationDetailAppBar {...props} />
                 }}
             />

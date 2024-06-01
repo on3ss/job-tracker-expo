@@ -1,19 +1,11 @@
 import { Appbar, useTheme } from 'react-native-paper';
 import { getHeaderTitle } from '@react-navigation/elements';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { ParamListBase, Route } from '@react-navigation/native';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import React, { useContext } from 'react';
 import { PreferencesContext } from '../providers/PreferencesContext';
 import Feather from '@expo/vector-icons/Feather'
 
-interface CustomAppBarPropType {
-  navigation: NativeStackNavigationProp<ParamListBase, string, undefined>,
-  route: Route<string>,
-  options: any,
-  back?: { title: string; } | undefined
-}
-
-const CustomAppBar: React.FC<CustomAppBarPropType> = ({ navigation, route, options, back }) => {
+const CustomAppBar: React.FC<NativeStackHeaderProps> = ({ navigation, route, options, back }) => {
   const title = getHeaderTitle(options, route.name);
   const theme = useTheme()
   const { toggleTheme, isThemeDark } = useContext(PreferencesContext)
