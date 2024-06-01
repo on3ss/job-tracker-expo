@@ -3,7 +3,6 @@ import CustomAppBar from "../../components/CustomAppBarBar";
 import ApplicationsHomeScreen from "../../screens/applications/ApplicationsMainScreen";
 import ApplicationFormScreen from "../../screens/applications/ApplicationFormScreen";
 import ApplicationDetailScreen from "../../screens/applications/detail/ApplicationDetailScreen";
-import ApplicationDetailAppBar from "../../screens/applications/detail/components/ApplicationDetailAppBar";
 
 export type ApplicationsStackParamList = {
     Applications: undefined,
@@ -30,9 +29,7 @@ const ApplicationsStack = () => {
                 name="ApplicationDetail"
                 component={ApplicationDetailScreen}
                 options={{
-                    title: "Details",
-                    /** @ts-ignore */
-                    header: (props) => <ApplicationDetailAppBar {...props} />
+                    title: "Details"
                 }}
             />
         </Stack.Navigator>
