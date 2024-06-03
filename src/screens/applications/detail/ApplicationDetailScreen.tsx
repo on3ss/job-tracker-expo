@@ -1,10 +1,9 @@
 import { Octicons } from '@expo/vector-icons';
-import dayjs from 'dayjs';
-import React, { useMemo } from 'react';
-import { ScrollView, View } from "react-native";
+import React from 'react';
+import { ScrollView, SectionList, View } from "react-native";
 import { Chip, Divider, Surface, Text, useTheme } from "react-native-paper";
 import useStyles from './styles';
-import { MOCK_STEPS, MOCK_NEXT_STEP } from './mock-data';
+import { MOCK_STAGES, MOCK_NEXT_STAGE, Stage } from './mock-data';
 
 const ApplicationDetailScreen: React.FC = () => {
     const theme = useTheme();
@@ -24,21 +23,27 @@ const ApplicationDetailScreen: React.FC = () => {
                     </View>
                 </Surface>
                 <View style={styles.nextStepContainer}>
-                    <Text variant="titleMedium">Next Step</Text>
-                    <StepListItem item={MOCK_NEXT_STEP} />
+                    <Text variant="titleMedium" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>Next Stage</Text>
+                    <StepListItem item={MOCK_NEXT_STAGE} />
                 </View>
                 <View style={styles.upcomingStepsContainer}>
-                    <Text variant="titleMedium">Upcoming Steps</Text>
-                    {MOCK_STEPS.map((item) => <StepListItem item={item} key={item.id} />)}
+                    <Text variant="titleMedium" style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>Upcoming Stages</Text>
+                    <SectionList
+                        sections={MOCK_STAGES}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={({ item }) => <StepListItem item={item} />}
+                        renderSectionHeader={({ section: { title } }) => (
+                            <Text variant="labelLarge" style={{ marginTop: 12 }}>{title.format('ddd, MMM D, YYYY')}</Text>
+                        )}
+                        scrollEnabled={false} />
                 </View>
             </View>
         </ScrollView>
     );
 };
 
-const StepListItem: React.FC<{ item: typeof MOCK_STEPS[0] }> = ({ item }) => {
+const StepListItem: React.FC<{ item: Stage }> = ({ item }) => {
     const styles = useStyles();
-    const timestamp = useMemo(() => dayjs(item.datetime), [item.datetime]);
 
     return (
         <Surface style={styles.stepContainer} mode="flat">
@@ -60,8 +65,8 @@ const StepListItem: React.FC<{ item: typeof MOCK_STEPS[0] }> = ({ item }) => {
             </ScrollView>
             <Divider />
             <View style={styles.stepFooter}>
-                <Text variant="bodyMedium" style={styles.stepDate}>{timestamp.format('ddd, MMM D, YYYY')}</Text>
-                <Text variant="bodyMedium" style={styles.stepTime}>{timestamp.format('h:mmA')}</Text>
+                <Text variant="bodyMedium" style={styles.stepTime}>{item.datetime.format('h:mmA')}</Text>
+                <Text variant="bodyMedium" style={styles.stepDate}>{item.datetime.format('ddd, MMM D, YYYY')}</Text>
             </View>
         </Surface>
     );

@@ -70,6 +70,7 @@ const useStyles = () => {
         },
         stepTime: {
             color: theme.colors.onSurface,
+            fontWeight: 'bold'
         },
         fab: {
             position: 'absolute'
