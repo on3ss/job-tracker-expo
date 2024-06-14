@@ -2,7 +2,6 @@ import { Octicons } from "@expo/vector-icons";
 import React from "react";
 import { ScrollView, SectionList, View } from "react-native";
 import {
-  Button,
   Chip,
   Divider,
   IconButton,
